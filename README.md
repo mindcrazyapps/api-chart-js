@@ -2,6 +2,19 @@
 api http for chart-js
 
 ## API
+#### environment
+```ruby
+//.env
+idString= 'myChart'
+ENV_typeChart= 'bar'
+ENV_stringLabel= '# of Votes'
+ENV_arrayList=
+ENV_arrayLabel= ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+ENV_arrayData= [12, 19, 3, 5, 2, 3]
+ENV_borderWidthNumber= 1
+ENV_valueBeginAtZero= true
+```
+
 #### variables
 ```javascript
 const idString = (parameter) => { return  document.getElementById(parameter) };  // const ctx = document.getElementById('myChart');
@@ -20,20 +33,20 @@ const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 
 #### algorithm
 ```javascript
-new Chart(idString('myChart'), {
-    type: typeChart('bar'),
+new Chart(ENV_idString, {
+    type: ENV_typeChart,
     data: {
-        labels: arrayLabel('Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'), //  ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+        labels: ENV_arrayLabel,
         datasets: [{
-            label: stringLabel('# of Votes'),
-            data: arrayData(12, 19, 3, 5, 2, 3),
-            borderWidth: borderWidthNumber(1)
+            label: ENV_stringLabel,
+            data: ENV_arrayData,
+            borderWidth: ENV_borderWidthNumber
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: valueBeginAtZero(true)
+                beginAtZero: ENV_valueBeginAtZero
             }
         }
     }
