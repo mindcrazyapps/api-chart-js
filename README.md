@@ -11,8 +11,8 @@ const stringLabel = (parameter) => { return stringChart(parameter); };
 const arrayList = (...args) => { return args.reduce((acc) => { return [acc] } )}; 
 const arrayLabel = (...args) => { return arrayList(args); };  
 const arrayData = (...args) => { return arrayList(args); };  
-const borderWidthNumber = 1;
-const valueBeginAtZero  = true;
+const borderWidthNumber = (parameter) => { return stringChart(parameter); };
+const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 ```
 
 #### api-http
@@ -27,13 +27,13 @@ new Chart(idString('myChart'), {
         datasets: [{
             label: stringLabel('# of Votes'),
             data: arrayData(12, 19, 3, 5, 2, 3),
-            borderWidth: borderWidthNumber // 1
+            borderWidth: borderWidthNumber(1)
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: valueBeginAtZero // true
+                beginAtZero: valueBeginAtZero(true)
             }
         }
     }
