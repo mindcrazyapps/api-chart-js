@@ -2,9 +2,9 @@
 api http for chart-js
 
 ## API
-```
-const ctx = document.getElementById('myChart');
-// https://api-chart-js-express.netlify.app/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/
+```javascript
+// const ctx = document.getElementById('myChart');
+// https://api-chart-js-express.netlify.app/id/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/
 new Chart(ctx, {
     type: 'bar',
     data: {
