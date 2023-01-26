@@ -2,23 +2,38 @@
 api http for chart-js
 
 ## API
+#### variables
 ```javascript
-// const ctx = document.getElementById('myChart');
-// https://api-chart-js-express.netlify.app/id/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/
-new Chart(ctx, {
-    type: 'bar',
+const idString = (parameter) => { return  document.getElementById(parameter) };  // const ctx = document.getElementById('myChart');
+const stringChart = (parameter) => { return parameter };  // const ctx = document.getElementById('myChart');
+const typeChart = (parameter) => { return stringChart(parameter); };  
+const stringLabel = (parameter) => { return stringChart(parameter); };  
+const arrayList(...args) => { return args.reduce((acc) => { return [acc] } )}; 
+const arrayLabel = (...args) => { return arrayList(args); };  
+const arrayData = (...args) => { return arrayList(args); };  
+const borderWidthNumber = 1;
+const valueBeginAtZero  = true;
+```
+
+#### api-http
+- get/post: `https://api-chart-js-express.netlify.app/id/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/`
+
+#### render.js
+```javascript
+new Chart(idString('myChart'), {
+    type: typeChart('bar'),
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: arrayLabel('Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'), //  ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
+            label: stringLabel('# of Votes'),
+            data: arrayData(12, 19, 3, 5, 2, 3),
+            borderWidth: borderWidthNumber // 1
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: valueBeginAtZero // true
             }
         }
     }
