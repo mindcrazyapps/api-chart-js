@@ -8,7 +8,7 @@ const idString = (parameter) => { return  document.getElementById(parameter) }; 
 const stringChart = (parameter) => { return parameter };  // const ctx = document.getElementById('myChart');
 const typeChart = (parameter) => { return stringChart(parameter); };  
 const stringLabel = (parameter) => { return stringChart(parameter); };  
-const arrayList(...args) => { return args.reduce((acc) => { return [acc] } )}; 
+const arrayList = (...args) => { return args.reduce((acc) => { return [acc] } )}; 
 const arrayLabel = (...args) => { return arrayList(args); };  
 const arrayData = (...args) => { return arrayList(args); };  
 const borderWidthNumber = 1;
