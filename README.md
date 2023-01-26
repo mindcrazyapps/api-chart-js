@@ -41,6 +41,7 @@ new Chart(idString('myChart'), {
 ```
 
 #### output
+![image](https://user-images.githubusercontent.com/123137817/214975123-1645c10e-9fbb-4c53-9003-b2e1180cb1df.png)
 
 ## About NextExperience
 
