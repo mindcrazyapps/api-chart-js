@@ -5,14 +5,13 @@ api http for chart-js
 #### environment
 ```ruby
 //.env
-idString= 'myChart'
-ENV_typeChart= 'bar'
-ENV_stringLabel= '# of Votes'
-ENV_arrayList=
-ENV_arrayLabel= ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
-ENV_arrayData= [12, 19, 3, 5, 2, 3]
-ENV_borderWidthNumber= 1
-ENV_valueBeginAtZero= true
+ID_STRING= 'myChart'
+TYPE_CHART= 'bar'
+STRING_LABEL= '# of Votes'
+ARRAY_LABELS= ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+ARRAY_DATA= [12, 19, 3, 5, 2, 3]
+BORDER_WIDTH_NUMBER = 1
+BEGIN_AT_ZERO = true
 ```
 
 #### variables
@@ -33,20 +32,20 @@ const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 
 #### algorithm
 ```javascript
-new Chart(ENV_idString, {
-    type: ENV_typeChart,
+new Chart(process.env.ID_STRING, {
+    type: process.env.TYPE_CHART,
     data: {
-        labels: ENV_arrayLabel,
+        labels: process.env.ARRAY_LABELS,
         datasets: [{
-            label: ENV_stringLabel,
-            data: ENV_arrayData,
-            borderWidth: ENV_borderWidthNumber
+            label: process.env.STRING_LABEL,
+            data: process.env.ARRAY_DATA,
+            borderWidth: process.env.BORDER_WIDTH_NUMBER
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: ENV_valueBeginAtZero
+                beginAtZero: process.env.BEGIN_AT_ZERO
             }
         }
     }
