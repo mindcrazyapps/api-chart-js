@@ -1,22 +1,37 @@
 {
-  "name": "chart-js-api",
-  "version": "1.0.0",
-  "description": "api http for chart-js",
-  "main": "index.js",
+  "name": "Netlify-Express",
+  "version": "0.0.1",
+  "description": "Example of how to deploy an Express.js Netlify app.",
+  "main": "functions/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "netlify-lambda build express",
+    "start": "node server-local.js",
+    "pug": "node node_modules/pug-cli/index.js views/ --out ./"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mindcrazyapps/chart-js-api.git"
+    "url": "git+https://github.com/king-melchizedek/Netlify-Express.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "netlify",
+    "express.js"
+  ],
+  "author": "Ethan Miller",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mindcrazyapps/chart-js-api/issues"
+    "url": "https://github.com/king-melchizedek/Netlify-Express/issues"
   },
-  "homepage": "https://github.com/mindcrazyapps/chart-js-api#readme",
+  "homepage": "https://github.com/king-melchizedek/Netlify-Express#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "pug": "^2.0.4",
+    "pug-cli": "^1.0.0-alpha6"
+  },
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "netlify-lambda": "^0.4.0",
+    "pug": "^2.0.4",
+    "pug-cli": "^1.0.0-alpha6",
+    "serverless-http": "^1.6.0"
   }
 }
