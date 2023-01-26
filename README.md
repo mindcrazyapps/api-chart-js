@@ -18,7 +18,7 @@ const valueBeginAtZero  = true;
 #### api-http
 - get/post: `https://api-chart-js-express.netlify.app/id/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/`
 
-#### render.js
+#### algorithm
 ```javascript
 new Chart(idString('myChart'), {
     type: typeChart('bar'),
@@ -39,6 +39,8 @@ new Chart(idString('myChart'), {
     }
 });
 ```
+
+#### output
 
 ## About NextExperience
 
