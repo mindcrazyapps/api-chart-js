@@ -32,6 +32,8 @@ const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 
 #### algorithm
 ```javascript
+require('dotenv').config();
+
 new Chart(process.env.ID_STRING, {
     type: process.env.TYPE_CHART,
     data: {
