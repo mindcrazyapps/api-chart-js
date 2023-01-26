@@ -2,9 +2,8 @@
 api http for chart-js
 
 ## API
-#### environment
+#### .env
 ```ruby
-//.env
 ID_STRING= 'myChart'
 TYPE_CHART= 'bar'
 STRING_LABEL= '# of Votes'
