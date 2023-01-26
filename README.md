@@ -1,6 +1,29 @@
 ## chart-js-api
 api http for chart-js
 
+## API
+```
+const ctx = document.getElementById('myChart');
+// https://api-chart-js-express.netlify.app/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+```
 
 ## About NextExperience
 
