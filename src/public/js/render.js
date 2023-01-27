@@ -1,4 +1,3 @@
-script.
   new Chart(process.env.ID_STRING, {
       type: process.env.TYPE_CHART,
         data: {
