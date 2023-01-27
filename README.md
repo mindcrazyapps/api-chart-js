@@ -13,6 +13,17 @@ BORDER_WIDTH = 1
 BEGIN_AT_ZERO = true
 ```
 
+#### declaration
+```
+import dotenv
+dotenv_file = dotenv.find_dotenv()
+dotenv.load_dotenv(dotenv_file) // require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
+const jsStringify = require('js-stringify');
+import {ID_STRING, TYPE_CHART, ARRAY_LABELS, STRING_LABEL, ARRAY_DATA, BORDER_WIDTH, BEGIN_AT_ZERO} from './lib.js'; // process.env.ID_STRING | 
+```
+
 #### variables
 ```javascript
 const idString = (parameter) => { return  document.getElementById(parameter) };  // const ctx = document.getElementById('myChart');
@@ -31,11 +42,6 @@ const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 
 #### algorithm
 ```javascript
-import dotenv
-dotenv_file = dotenv.find_dotenv()
-dotenv.load_dotenv(dotenv_file) // require('dotenv').config();
-const fs = require('fs');
-const path = require('path');
 
 app.get('/api/graph/id', function(req, res) {
     res.send(os.environ["ID_STRING"]);  // outputs: 'myChart'
@@ -103,27 +109,27 @@ app.get('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:begin
     res.send({responseAll});
 });
 
+const changeFile = (keyParameter, keyFind) => {
+  return dotenv.set_key(dotenv_file, keyParameter, os.environ[keyFind]);
+}
+
 app.post('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:beginAtZero', function(req, res) {
-    const ID_STRING = dotenv.set_key(dotenv_file, req.params.id, os.environ["ID_STRING"]);
-    const TYPE_CHART = dotenv.set_key(dotenv_file, req.params.typechart, os.environ["TYPE_CHART"]);
-    const STRING_LABEL = dotenv.set_key(dotenv_file, req.params.label, os.environ["STRING_LABEL"]);
-    const ARRAY_LABELS = dotenv.set_key(dotenv_file, req.params.labels, os.environ["ARRAY_LABELS"]);
-    const ARRAY_DATA = dotenv.set_key(dotenv_file, req.params.arraydata, os.environ["ARRAY_DATA"]);
-    const BORDER_WIDTH = dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH"]);
-    const BEGIN_AT_ZERO = dotenv.set_key(dotenv_file, req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]);
-    const obj = { id:req.params.id,
-    typechart:req.params.typechart,
-    label:req.params.label,
-    labels:req.params.labels,
-    arraydata:req.params.arraydata,
-    borderwidth:req.params.borderwidth,
+    changeFile(req.params.id, os.environ["ID_STRING"]);
+    changeFile(req.params.typechart, os.environ["TYPE_CHART"]);
+    changeFile(req.params.label, os.environ["STRING_LABEL"]);
+    changeFile(req.params.labels, os.environ["ARRAY_LABELS"]);
+    changeFile(req.params.arraydata, os.environ["ARRAY_DATA"]);
+    changeFile(req.params.borderwidth, os.environ["BORDER_WIDTH"]);
+    changeFile(req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]);    
+    const obj = { id:req.params.id, typechart:req.params.typechart, label:req.params.label, 
+    labels:req.params.labels, arraydata:req.params.arraydata,borderwidth:req.params.borderwidth, 
     beginAtZero:req.params.beginAtZero
     }
     res.send(obj);
 });
 
-app.get('/api/graph', function(req, res) {
-    res.send('index.html');
+app.get('/api/chart', (req, res) => {
+  res.render('index.pug', {jsStringify, data});
 });
 ```
 
