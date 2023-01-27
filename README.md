@@ -24,7 +24,7 @@ const jsStringify = require('js-stringify');
 import {ID_STRING, TYPE_CHART, ARRAY_LABELS, STRING_LABEL, ARRAY_DATA, BORDER_WIDTH, BEGIN_AT_ZERO} from './lib.js'; // process.env.ID_STRING | 
 ```
 
-#### variables
+#### functions & variables
 ```javascript
 const idString = (parameter) => { return  document.getElementById(parameter) };  // const ctx = document.getElementById('myChart');
 const stringChart = (parameter) => { return parameter };  // const ctx = document.getElementById('myChart');
@@ -36,9 +36,6 @@ const arrayData = (...args) => { return arrayList(args); };
 const borderWidthNumber = (parameter) => { return stringChart(parameter); };
 const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 ```
-
-#### api-http
-- get/post: `https://api-chart-js-express.netlify.app/id/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/`
 
 #### algorithm
 ```javascript
@@ -132,6 +129,9 @@ app.get('/api/chart', (req, res) => {
   res.render('index.pug', {jsStringify, data});
 });
 ```
+
+#### api-http
+- get/post: `https://api-chart-js-express.netlify.app/id/type/data(array)/label(array)/data(array)/borderWidth(number)/scales/y/beginAtZero(true|false)/`
 
 #### output
 ![image](https://user-images.githubusercontent.com/123137817/214975123-1645c10e-9fbb-4c53-9003-b2e1180cb1df.png)
