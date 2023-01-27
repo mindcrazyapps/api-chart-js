@@ -9,7 +9,7 @@ TYPE_CHART= 'bar'
 STRING_LABEL= '# of Votes'
 ARRAY_LABELS= ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
 ARRAY_DATA= [12, 19, 3, 5, 2, 3]
-BORDER_WIDTH_NUMBER = 1
+BORDER_WIDTH = 1
 BEGIN_AT_ZERO = true
 ```
 
@@ -58,7 +58,7 @@ app.get('/api/graph/arraydata', function(req, res) {
 });
 
 app.get('/api/graph/borderwidth', function(req, res) {
-    res.send(os.environ["BORDER_WIDTH_NUMBER"]);  // outputs: "1"
+    res.send(os.environ["BORDER_WIDTH"]);  // outputs: "1"
 });
 
 app.get('/api/graph/beginAtZero', function(req, res) {
@@ -86,7 +86,7 @@ app.post('/api/graph/arraydata', function(req, res) {
 });
 
 app.post('/api/graph/borderwidth', function(req, res) {
-    res.send(dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH_NUMBER"]));  // outputs: 1
+    res.send(dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH"]));  // outputs: 1
 });
 
 app.post('/api/graph/beginAtZero', function(req, res) {
@@ -109,7 +109,7 @@ app.post('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:begi
     const STRING_LABEL = dotenv.set_key(dotenv_file, req.params.label, os.environ["STRING_LABEL"]);
     const ARRAY_LABELS = dotenv.set_key(dotenv_file, req.params.labels, os.environ["ARRAY_LABELS"]);
     const ARRAY_DATA = dotenv.set_key(dotenv_file, req.params.arraydata, os.environ["ARRAY_DATA"]);
-    const BORDER_WIDTH_NUMBER = dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH_NUMBER"]);
+    const BORDER_WIDTH = dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH"]);
     const BEGIN_AT_ZERO = dotenv.set_key(dotenv_file, req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]);
     const obj = { id:req.params.id,
     typechart:req.params.typechart,
