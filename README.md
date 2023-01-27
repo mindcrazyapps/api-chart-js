@@ -14,7 +14,7 @@ BEGIN_AT_ZERO = true
 ```
 
 #### declaration
-```
+```javascript
 import dotenv
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file) // require('dotenv').config();
