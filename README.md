@@ -22,7 +22,6 @@ const fs = require('fs');
 const path = require('path');
 const jsStringify = require('js-stringify');
 const responseAll = fs.readFileSync(path.join(__dirname, '.env'), 'utf-8').match(/^[A-Za-z0-9_]+/gm); 
-import {ID_STRING, TYPE_CHART, ARRAY_LABELS, STRING_LABEL, ARRAY_DATA, BORDER_WIDTH, BEGIN_AT_ZERO} from './lib.js'; // process.env.ID_STRING
 const idString = (parameter) => { return  document.getElementById(parameter) };  // const ctx = document.getElementById('myChart');
 const stringChart = (parameter) => { return parameter };  // const ctx = document.getElementById('myChart');
 const typeChart = (parameter) => { return stringChart(parameter); };  
