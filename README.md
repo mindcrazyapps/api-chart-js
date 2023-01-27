@@ -13,7 +13,7 @@ BORDER_WIDTH = 1
 BEGIN_AT_ZERO = true
 ```
 
-#### declaration
+#### declaration, functions & variables
 ```javascript
 import dotenv
 dotenv_file = dotenv.find_dotenv()
@@ -21,11 +21,8 @@ dotenv.load_dotenv(dotenv_file) // require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const jsStringify = require('js-stringify');
-import {ID_STRING, TYPE_CHART, ARRAY_LABELS, STRING_LABEL, ARRAY_DATA, BORDER_WIDTH, BEGIN_AT_ZERO} from './lib.js'; // process.env.ID_STRING | 
-```
-
-#### functions & variables
-```javascript
+const responseAll = fs.readFileSync(path.join(__dirname, '.env'), 'utf-8').match(/^[A-Za-z0-9_]+/gm); 
+import {ID_STRING, TYPE_CHART, ARRAY_LABELS, STRING_LABEL, ARRAY_DATA, BORDER_WIDTH, BEGIN_AT_ZERO} from './lib.js'; // process.env.ID_STRING
 const idString = (parameter) => { return  document.getElementById(parameter) };  // const ctx = document.getElementById('myChart');
 const stringChart = (parameter) => { return parameter };  // const ctx = document.getElementById('myChart');
 const typeChart = (parameter) => { return stringChart(parameter); };  
@@ -35,6 +32,10 @@ const arrayLabel = (...args) => { return arrayList(args); };
 const arrayData = (...args) => { return arrayList(args); };  
 const borderWidthNumber = (parameter) => { return stringChart(parameter); };
 const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
+const changeFile = (keyParameter, keyFind) => { return dotenv.set_key(dotenv_file, keyParameter, os.environ[keyFind]); };
+const generateChart = () => {
+  return "<script> new Chart("+process.env.ID_STRING+", {"+"type:"+process.env.TYPE_CHART+","+"data: {"+"labels:"+ process.env.ARRAY_LABELS+","+"datasets:"+ "[{"+"label:"+ process.env.STRING_LABEL+","+"data:"+ process.env.ARRAY_DATA+","+"borderWidth:"+process.env.BORDER_WIDTH+"}]"+"},"+"options: {"+ "scales: { y: { "+ "beginAtZero:"+ process.env.BEGIN_AT_ZERO + "}"+ "}"+"}"+"}); </script>";
+};
 ```
 
 #### algorithm
@@ -96,8 +97,6 @@ app.post('/api/graph/beginAtZero', function(req, res) {
     res.send(dotenv.set_key(dotenv_file, req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]));  // outputs: true
 });
 
-const responseAll = fs.readFileSync(path.join(__dirname, '.env'), 'utf-8').match(/^[A-Za-z0-9_]+/gm); 
-
 app.get('/api/graph/all', function(req, res) {
     res.send({responseAll});
 });
@@ -105,10 +104,6 @@ app.get('/api/graph/all', function(req, res) {
 app.get('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:beginAtZero', function(req, res) {
     res.send({responseAll});
 });
-
-const changeFile = (keyParameter, keyFind) => {
-  return dotenv.set_key(dotenv_file, keyParameter, os.environ[keyFind]);
-}
 
 app.post('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:beginAtZero', function(req, res) {
     changeFile(req.params.id, os.environ["ID_STRING"]);
@@ -118,15 +113,20 @@ app.post('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:begi
     changeFile(req.params.arraydata, os.environ["ARRAY_DATA"]);
     changeFile(req.params.borderwidth, os.environ["BORDER_WIDTH"]);
     changeFile(req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]);    
-    const obj = { id:req.params.id, typechart:req.params.typechart, label:req.params.label, 
-    labels:req.params.labels, arraydata:req.params.arraydata,borderwidth:req.params.borderwidth, 
-    beginAtZero:req.params.beginAtZero
+    const obj = { 
+       id:req.params.id, 
+       typechart:req.params.typechart,
+       label:req.params.label,
+       labels:req.params.labels,
+       arraydata:req.params.arraydata,
+       borderwidth:req.params.borderwidth, 
+       beginAtZero:req.params.beginAtZero
     }
     res.send(obj);
 });
 
 app.get('/api/chart', (req, res) => {
-  res.render('index.pug', {jsStringify, data});
+  res.render('index.pug', {jsStringify, generateChart}); //, //{jsStringify, data});
 });
 ```
 
