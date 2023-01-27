@@ -31,25 +31,99 @@ const valueBeginAtZero = (parameter) => { return stringChart(parameter); };
 
 #### algorithm
 ```javascript
-require('dotenv').config();
+import dotenv
+dotenv_file = dotenv.find_dotenv()
+dotenv.load_dotenv(dotenv_file) // require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 
-new Chart(process.env.ID_STRING, {
-    type: process.env.TYPE_CHART,
-    data: {
-        labels: process.env.ARRAY_LABELS,
-        datasets: [{
-            label: process.env.STRING_LABEL,
-            data: process.env.ARRAY_DATA,
-            borderWidth: process.env.BORDER_WIDTH_NUMBER
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: process.env.BEGIN_AT_ZERO
-            }
-        }
+app.get('/api/graph/id', function(req, res) {
+    res.send(os.environ["ID_STRING"]);  // outputs: 'myChart'
+});
+
+app.get('/api/graph/typechart', function(req, res) {
+    res.send(os.environ["TYPE_CHART"]);  // outputs: 'bar'
+});
+
+app.get('/api/graph/label', function(req, res) {
+    res.send(os.environ["STRING_LABEL"]); // outputs: '# of Votes'
+});
+
+app.get('/api/graph/labels', function(req, res) {
+    res.send(os.environ["ARRAY_LABELS"]); // outputs: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+});
+
+app.get('/api/graph/arraydata', function(req, res) {
+    res.send(os.environ["ARRAY_DATA"]); // outputs: [12, 19, 3, 5, 2, 3] 
+});
+
+app.get('/api/graph/borderwidth', function(req, res) {
+    res.send(os.environ["BORDER_WIDTH_NUMBER"]);  // outputs: "1"
+});
+
+app.get('/api/graph/beginAtZero', function(req, res) {
+    res.send(os.environ["BEGIN_AT_ZERO"]);  // outputs: "true"
+});
+
+app.post('/api/graph/id', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.id, os.environ["ID_STRING"]));  // outputs: 'myChart'
+});
+
+app.post('/api/graph/typechart', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.typechart, os.environ["TYPE_CHART"]));  // outputs: 'bar'
+});
+
+app.post('/api/graph/label', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.label, os.environ["TYPE_CHART"]));  // outputs: '# of Votes'
+});
+
+app.post('/api/graph/labels', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.labels, os.environ["ARRAY_LABELS"]));  // outputs: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+});
+
+app.post('/api/graph/arraydata', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.arraydata, os.environ["ARRAY_DATA"]));  // outputs: [12, 19, 3, 5, 2, 3]
+});
+
+app.post('/api/graph/borderwidth', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH_NUMBER"]));  // outputs: 1
+});
+
+app.post('/api/graph/beginAtZero', function(req, res) {
+    res.send(dotenv.set_key(dotenv_file, req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]));  // outputs: true
+});
+
+const responseAll = fs.readFileSync(path.join(__dirname, '.env'), 'utf-8').match(/^[A-Za-z0-9_]+/gm); 
+
+app.get('/api/graph/all', function(req, res) {
+    res.send({responseAll});
+});
+
+app.get('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:beginAtZero', function(req, res) {
+    res.send({responseAll});
+});
+
+app.post('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:beginAtZero', function(req, res) {
+    const ID_STRING = dotenv.set_key(dotenv_file, req.params.id, os.environ["ID_STRING"]);
+    const TYPE_CHART = dotenv.set_key(dotenv_file, req.params.typechart, os.environ["TYPE_CHART"]);
+    const STRING_LABEL = dotenv.set_key(dotenv_file, req.params.label, os.environ["STRING_LABEL"]);
+    const ARRAY_LABELS = dotenv.set_key(dotenv_file, req.params.labels, os.environ["ARRAY_LABELS"]);
+    const ARRAY_DATA = dotenv.set_key(dotenv_file, req.params.arraydata, os.environ["ARRAY_DATA"]);
+    const BORDER_WIDTH_NUMBER = dotenv.set_key(dotenv_file, req.params.borderwidth, os.environ["BORDER_WIDTH_NUMBER"]);
+    const BEGIN_AT_ZERO = dotenv.set_key(dotenv_file, req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]);
+    const obj = { id:req.params.id,
+    typechart:req.params.typechart,
+    label:req.params.label,
+    labels:req.params.labels,
+    arraydata:req.params.arraydata,
+    borderwidth:req.params.borderwidth,
+    beginAtZero:req.params.beginAtZero
     }
+    res.send(obj);
+});
+
+app.get('/api/graph', function(req, res) {
+    res.send('index.html');
 });
 ```
 
