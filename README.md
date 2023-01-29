@@ -1,4 +1,4 @@
-## chart-js-api
+## api-chart-js
 api http for chart-js
 
 ## concept
