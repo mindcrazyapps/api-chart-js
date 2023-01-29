@@ -2,7 +2,7 @@
 api http for chart-js
 
 ## concept
-![image](https://user-images.githubusercontent.com/123137817/215301138-d9b325db-470f-463d-b748-e36ce707fabf.png)
+![image](https://user-images.githubusercontent.com/123137817/215301332-b0100894-c487-4bce-8308-1bae4578bca9.png)
 
 ## API
 #### .env
