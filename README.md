@@ -17,6 +17,7 @@ BEGIN_AT_ZERO = true # boolean
 
 #### declaration, functions & variables
 ```javascript
+import { BarChart} from  "./js/graph.js";
 import dotenv
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file) // require('dotenv').config();
@@ -107,23 +108,8 @@ app.get('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:begin
 });
 
 app.post('/api/graph/:id/:typechart/:label/:labels/:arraydata/:borderwidth/:beginAtZero', function(req, res) {
-    changeFile(req.params.id, os.environ["ID_STRING"]);
-    changeFile(req.params.typechart, os.environ["TYPE_CHART"]);
-    changeFile(req.params.label, os.environ["STRING_LABEL"]);
-    changeFile(req.params.labels, os.environ["ARRAY_LABELS"]);
-    changeFile(req.params.arraydata, os.environ["ARRAY_DATA"]);
-    changeFile(req.params.borderwidth, os.environ["BORDER_WIDTH"]);
-    changeFile(req.params.beginAtZero, os.environ["BEGIN_AT_ZERO"]);    
-    const obj = { 
-       id:req.params.id, 
-       typechart:req.params.typechart,
-       label:req.params.label,
-       labels:req.params.labels,
-       arraydata:req.params.arraydata,
-       borderwidth:req.params.borderwidth, 
-       beginAtZero:req.params.beginAtZero
-    }
-    res.send(obj);
+     const GraphBarChart = new BarChart(req.params.id,req.params.typechart, req.params.labels, req.params.data, req.params.label, req.params.borderwidth, req.params.beginAtZero);
+    res.send(GraphBarChart.generateGraph());
 });
 
 app.get('/api/chart', (req, res) => {
