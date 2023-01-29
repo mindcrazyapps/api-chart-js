@@ -5,15 +5,14 @@ api http for chart-js
 ![image](https://user-images.githubusercontent.com/123137817/215301332-b0100894-c487-4bce-8308-1bae4578bca9.png)
 
 ## API
-#### .env
 ```ruby
-ID_STRING= 'myChart'
-TYPE_CHART= 'bar'
-STRING_LABEL= '# of Votes'
-ARRAY_LABELS= ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
-ARRAY_DATA= [12, 19, 3, 5, 2, 3]
-BORDER_WIDTH = 1
-BEGIN_AT_ZERO = true
+ID= 'myChart' # string
+TYPE_CHART= 'bar' # string
+LABEL= '# of Votes' # string
+LABELS= ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'] # array
+DATA= [12, 19, 3, 5, 2, 3] #arrray
+BORDER_WIDTH = 1 # number
+BEGIN_AT_ZERO = true # boolean
 ```
 
 #### declaration, functions & variables
